@@ -7,8 +7,25 @@ background:#f4f4f4;
 header{
 background:#2e7d32;
 color:white;
-padding:40px;
+padding:30px;
 text-align:center;
+}
+
+.hero{
+background:url("https://images.unsplash.com/photo-1603252109303-2751441dd157");
+background-size:cover;
+background-position:center;
+color:white;
+text-align:center;
+padding:100px 20px;
+}
+
+.hero .btn{
+background:#2e7d32;
+padding:12px 25px;
+color:white;
+text-decoration:none;
+border-radius:5px;
 }
 
 nav{
@@ -82,4 +99,5 @@ background:#333;
 color:white;
 text-align:center;
 padding:20px;
+margin-top:40px;
 }
