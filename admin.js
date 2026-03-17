@@ -1,16 +1,27 @@
-function addProduct(){
+<!DOCTYPE html>
+<html>
 
-let p={
+<head>
+<title>Admin Panel</title>
+</head>
 
-name:name.value,
-price:price.value,
-image:image.value,
-desc:desc.value
+<body>
 
-};
+<h2>Add Product</h2>
 
-products.push(p);
+<input id="name" placeholder="Product Name">
 
-alert("Product Added");
+<input id="price" placeholder="Price">
 
-}
+<input id="image" placeholder="Image URL">
+
+<textarea id="desc" placeholder="Description"></textarea>
+
+<button onclick="addProduct()">Add Product</button>
+
+<script src="products.js"></script>
+<script src="admin.js"></script>
+
+</body>
+
+</html>
