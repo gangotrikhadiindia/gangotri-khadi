@@ -42,7 +42,7 @@ cartItems.innerHTML="";
 
 cart.forEach(p=>{
 
-cartItems.innerHTML+=`${p.name} ₹${p.price}<br>`;
+cartItems.innerHTML+=p.name+" ₹"+p.price+"<br>";
 
 });
 
