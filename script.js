@@ -1,16 +1,12 @@
-let products = JSON.parse(localStorage.getItem("products")) || [];
-let contact = JSON.parse(localStorage.getItem("contact")) || {};
-let orders = JSON.parse(localStorage.getItem("orders")) || [];
-let cart = [];
+let cart=[];
 
 function renderProducts(){
 
-let list=document.getElementById("productList");
-list.innerHTML="";
+productList.innerHTML="";
 
 products.forEach((p,i)=>{
 
-list.innerHTML+=`
+productList.innerHTML+=`
 
 <div class="product">
 
@@ -20,11 +16,7 @@ list.innerHTML+=`
 
 <p>${p.desc}</p>
 
-<p><b>Price:</b> ₹${p.price}</p>
-
-<p><b>Color:</b> ${p.color}</p>
-
-<p><b>Size:</b> ${p.size}</p>
+<p>₹${p.price}</p>
 
 <button onclick="addCart(${i})">Add to Cart</button>
 
@@ -39,116 +31,62 @@ list.innerHTML+=`
 function addCart(i){
 
 cart.push(products[i]);
+
 renderCart();
 
 }
 
 function renderCart(){
 
-let cartBox=document.getElementById("cartItems");
-
-cartBox.innerHTML="";
-
-let total=0;
+cartItems.innerHTML="";
 
 cart.forEach(p=>{
 
-total+=Number(p.price);
-
-cartBox.innerHTML+=`
-
-<div>
-
-${p.name} - ₹${p.price}
-
-</div>
-
-`;
+cartItems.innerHTML+=`${p.name} ₹${p.price}<br>`;
 
 });
-
-cartBox.innerHTML+=`<h3>Total: ₹${total}</h3>`;
 
 }
 
 function orderWhatsApp(){
 
-let msg="*Gangotri Khadi Order*%0A";
-
-let total=0;
+let msg="Order:%0A";
 
 cart.forEach(p=>{
 
-msg+=`${p.name} - ₹${p.price}%0A`;
-
-total+=Number(p.price);
+msg+=p.name+" ₹"+p.price+"%0A";
 
 });
 
-msg+=`%0ATotal: ₹${total}`;
-
-window.open(`https://wa.me/${contact.whatsapp}?text=${msg}`);
-
-saveOrder(total);
+window.open("https://wa.me/91XXXXXXXXXX?text="+msg);
 
 }
 
 function payUPI(){
 
-let total=0;
-
-cart.forEach(p=>{
-
-total+=Number(p.price);
-
-});
-
-window.open(`upi://pay?pa=${contact.upi}&pn=GangotriKhadi&am=${total}`);
-
-saveOrder(total);
+window.open("upi://pay?pa=yourupi@upi");
 
 }
 
-function saveOrder(total){
+function searchProduct(){
 
-let order={
+let s=search.value.toLowerCase();
 
-items:cart,
-total:total,
-date:new Date().toLocaleString()
+productList.innerHTML="";
 
-};
+products.filter(p=>p.name.toLowerCase().includes(s)).forEach((p,i)=>{
 
-orders.push(order);
+productList.innerHTML+=`
 
-localStorage.setItem("orders",JSON.stringify(orders));
+<div class="product">
 
-cart=[];
+<h3>${p.name}</h3>
 
-renderCart();
+<p>₹${p.price}</p>
 
-}
-
-function renderOrders(){
-
-let box=document.getElementById("orderHistory");
-
-if(!box) return;
-
-box.innerHTML="";
-
-orders.forEach(o=>{
-
-box.innerHTML+=`
-
-<div>
-
-<b>Date:</b> ${o.date}<br>
-<b>Total:</b> ₹${o.total}
+<button onclick="addCart(${i})">Add</button>
 
 </div>
-
-<hr>
 
 `;
 
@@ -156,20 +94,4 @@ box.innerHTML+=`
 
 }
 
-function renderContact(){
-
-phone.innerText="Phone: "+(contact.phone||"");
-
-whatsapp.innerText="WhatsApp: "+(contact.whatsapp||"");
-
-instagram.innerText="Instagram: "+(contact.instagram||"");
-
-facebook.innerText="Facebook: "+(contact.facebook||"");
-
-upi.innerText="UPI: "+(contact.upi||"");
-
-}
-
 renderProducts();
-renderContact();
-renderOrders();
