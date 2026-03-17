@@ -1,21 +1,16 @@
-db.collection("orders").get()
+function addProduct(){
 
-.then(snapshot=>{
+let p={
 
-snapshot.forEach(doc=>{
+name:name.value,
+price:price.value,
+image:image.value,
+desc:desc.value
 
-orders.innerHTML+=`
+};
 
-<div>
+products.push(p);
 
-${doc.data().email}
+alert("Product Added");
 
-₹${doc.data().total}
-
-</div>
-
-`;
-
-});
-
-});
+}
