@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+
 <head>
 
 <meta charset="UTF-8">
@@ -24,16 +25,19 @@
 
 <a href="#products">Products</a>
 <a href="#cart">Cart</a>
-<a href="login.html">Login</a>
 <a href="admin.html">Admin</a>
 
 </nav>
 
-<input id="search" placeholder="Search products..." onkeyup="searchProduct()">
+<section class="search-box">
+
+<input id="search" placeholder="Search product..." onkeyup="searchProduct()">
+
+</section>
 
 <section id="products">
 
-<div id="productList"></div>
+<div id="productList" class="product-grid"></div>
 
 </section>
 
@@ -43,17 +47,20 @@
 
 <div id="cartItems"></div>
 
-<button onclick="orderWhatsApp()">WhatsApp Order</button>
+<button onclick="orderWhatsApp()">Order on WhatsApp</button>
 
-<button onclick="payUPI()">UPI Pay</button>
-
-<button onclick="payRazorpay()">Pay Online</button>
+<button onclick="payUPI()">Pay with UPI</button>
 
 </section>
 
+<footer>
+
+<p>© 2026 Gangotri Khadi</p>
+
+</footer>
+
 <script src="products.js"></script>
 <script src="script.js"></script>
-<script src="razorpay.js"></script>
 
 </body>
 </html>
